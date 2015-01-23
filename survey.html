@@ -1,9 +1,42 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Alex's Survey</tilte>
+		<title>Alex's Survey</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<body>
-	
+		<div>
+		<div>
+		<form method="POST" action="results.php">
+			<div>
+				<p>Quesiont 1:<br></p>
+				<label class="radio-inline"><input type="radio" name="q1[]">Option 1</label>
+				<label class="radio-inline"><input type="radio" name="q1[]">Option 2</label>
+				<label class="radio-inline"><input type="radio" name="q1[]">Option 3</label>
+			</div>
+			<div>
+				<p>Quesiont 2:<br></p>
+				<label class="radio-inline"><input type="radio" name="q2[]">Option 1</label>
+				<label class="radio-inline"><input type="radio" name="q2[]">Option 2</label>
+				<label class="radio-inline"><input type="radio" name="q2[]">Option 3</label>
+			</div>
+			<div>
+				<p>Quesiont 3:<br></p>
+				<label class="radio-inline"><input type="radio" name="q3[]">Option 1</label>
+				<label class="radio-inline"><input type="radio" name="q3[]">Option 2</label>
+				<label class="radio-inline"><input type="radio" name="q3[]">Option 3</label>
+			</div>
+			<div>
+				<p>Quesiont 4:<br></p>
+				<label class="radio-inline"><input type="radio" name="q4[]">Option 1</label>
+				<label class="radio-inline"><input type="radio" name="q4[]">Option 2</label>
+				<label class="radio-inline"><input type="radio" name="q4[]">Option 3</label>
+			</div>
+			<button type="submit" value="Submit">Submit</button>
+		</form>
 	</body>
 </html>
 		
