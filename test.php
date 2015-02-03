@@ -1,8 +1,15 @@
 <?php 
 	
-	require("dbConnector.php");
+require("dbConnector.php");
 	
-	$db = loadDatabase();
+$db = loadDatabase();
+
+foreach ($db->query("SELECT fName, lName FROM users") as &row)
+{
+	echo "First Name: " . $row['fName'];
+	echo " Last Name: " . $row['lName'];
+	echo "<br />";
+}
 	
 ?>
 
