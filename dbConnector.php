@@ -9,8 +9,9 @@ function loadDatabase()
 
 	$dbName = "dinobabies";
 
+	// openShiftVar is not getting set... it is null
     $openShiftVar = getenv('OPENSHIFT_MYSQL_DB_HOST');
-	echo "before if ";
+	
     if ($openShiftVar === null || $openShiftVar == "")
     {
 		// Not in the openshift environment
@@ -22,7 +23,7 @@ function loadDatabase()
     else 
     { 
         // In the openshift environment
-		echo "in the else ";
+		
         $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
         $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT'); 
         $dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME');

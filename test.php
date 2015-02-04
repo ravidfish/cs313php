@@ -6,7 +6,7 @@
 	<body>
 	
 <?php 
-echo "before require ";
+
 require("dbConnector.php");
 $db = loadDatabase();
 
