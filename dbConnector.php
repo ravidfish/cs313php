@@ -2,38 +2,36 @@
 
 function loadDatabase()
 {
+	$dbHost = "";
+	$dbPort = "";
+	$dbUser = "";
+	$dbPassword = "";
 
-  $dbHost = "";
-  $dbPort = "";
-  $dbUser = "";
-  $dbPassword = "";
+	$dbName = "dinobabies";
 
-     $dbName = "dinobabies";
+    $openShiftVar = getenv('OPENSHIFT_MYSQL_DB_HOST');
 
-     $openShiftVar = getenv('OPENSHIFT_MYSQL_DB_HOST');
+    if ($openShiftVar === null || $openShiftVar == "")
+    {
+		// Not in the openshift environment
+   
+        require("setLocalDatabaseCredentials.php");
+				
+		$db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
+	}
+    else 
+    { 
+        // In the openshift environment
 
-     if ($openShiftVar === null || $openShiftVar == "")
-     {
-          // Not in the openshift environment
-          echo "Using local credentials: "; 
-          require("setLocalDatabaseCredentials.php");
-     }
-     else 
-     { 
-          // In the openshift environment
-          echo "Using openshift credentials: ";
-
-          $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
-          $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT'); 
-          $dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
-          $dbPassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
-     } 
-     echo "host:$dbHost:$dbPort dbName:$dbName user:$dbUser password:$dbPassword<br >\n";
-
-     $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-
-     return $db;
-
+        $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+        $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT'); 
+        $dbUser = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+        $dbPassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+		
+		$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+    } 
+    
+	return $db;
 }
 
 ?>
