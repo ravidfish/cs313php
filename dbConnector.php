@@ -10,7 +10,7 @@ function loadDatabase()
 	$dbName = "dinobabies";
 
     $openShiftVar = getenv('OPENSHIFT_MYSQL_DB_HOST');
-
+	echo "before if";
     if ($openShiftVar === null || $openShiftVar == "")
     {
 		// Not in the openshift environment
