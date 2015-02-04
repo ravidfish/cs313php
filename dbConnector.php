@@ -14,7 +14,7 @@ function loadDatabase()
     if ($openShiftVar === null || $openShiftVar == "")
     {
 		// Not in the openshift environment
-		echo "in if "
+		echo "in if ";
         require("setLocalDatabaseCredentials.php");
 				
 		$db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
