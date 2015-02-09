@@ -15,7 +15,7 @@ $db = loadDatabase();
 		<meta name="author" content="">
 		<link rel="icon" href="../../favicon.ico">
 
-		<title>Off Canvas Template for Bootstrap</title>
+		<title>Dinobabies</title>
 
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,13 +32,12 @@ $db = loadDatabase();
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">View Comments</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li class="active"><a href="http://php-ravfish.rhcloud.com/dinobabies.php">Home</a></li>
+						<li><a href="#">View My Comments</a></li>
 					</ul>
 					<form class="navbar-form navbar-right" role="search" method="POST" name="search" action="">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
+							<input type="text" class="form-control" placeholder="Search for Dinobabies Item">
 						</div>
 						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 					</form>
