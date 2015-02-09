@@ -5,16 +5,21 @@
 	</head>
 	<body>
 	
-<?php 
+<?php
 
 require("dbConnector.php");
 $db = loadDatabase();
 
-foreach ($db->query("SELECT fName, lName FROM user") as $row)
+$sql = "SELECT date, body FROM comment WHERE user_id = :user";
+$user = "1";
+$statement = $db->prepare($sql);
+$statement->bindValue(':user', $user, PDO::PARAM_STR);
+$statement->execute();
+
+while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {
-	echo "First Name: " . $row['fName'];
-	echo " Last Name: " . $row['lName'];
-	echo "<br \>";
+	echo "Date: " . $row["date"] . "<br />\n";
+	echo "Body: " . $row["body"] . "<br />\n";	
 }
 
 ?>
