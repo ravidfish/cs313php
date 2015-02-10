@@ -46,32 +46,60 @@ $db = loadDatabase();
 		<!-- header contents -->
 		<div class="container">
 			<div class="jumbotron">
-				<h1>My Comments</h1>            
+				<h1>Inventory</h1>            
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-
+				
+				
+				
+				</div>
+				<div class="col-md-4">
+						
 <?php
 
-echo "<br />\n<br />\n" . "Comments for user 1:" . "<br />\n<br />\n";
-$sql = "SELECT date, body FROM comment WHERE user_id = :user";
-$user = "1";
-$statement = $db->prepare($sql);
-$statement->bindValue(':user', $user, PDO::PARAM_STR);
-$statement->execute();
+$name = "";
+$colorName = "";
+$size = "";
 
-$count = 0;
-
-while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-{	
-	$count++;
-	echo "Comment Number: " . $count . "<br />\n";
-	echo "Date: " . $row["date"] . "<br />\n";
-	echo "Body: " . $row["body"] . "<br />\n";
-	echo "<br />\n";
+if (isset($_POST['item']) && isset($_POST['size']) && isset($_POST['color']))
+{
+	$name = $_POST['item'];
+	$colorName = $_POST['color'];
+	$size = $_POST['size'];
 }
 
+else
+{
+	$pageURL = "http";
+
+	if (array_key_exists('HTTPS', $_SERVER) && $_SERVER["HTTPS"] == "on") 
+	{
+		$pageURL .= "s";
+	}
+
+	if ($_SERVER["SERVER_PORT"] != "80")
+	{
+		$pageURL .= "://";
+	}
+
+	else
+	{
+		$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+	}
+
+	$query_str = parse_url($pageURL, PHP_URL_QUERY);
+	parse_str($query_str);
+	
+	$name = $name;
+	$colorName = $color;
+	$size = $size;
+}
+
+
+
 ?>
+
 				</div>
 			</div>
 		</div><!--/.container-->

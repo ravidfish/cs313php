@@ -19,8 +19,6 @@ $db = loadDatabase();
 
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<!-- Custom styles for this template -->
-		<link href="offcanvas.css" rel="stylesheet">
 		<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 	</head>
 		
@@ -71,15 +69,14 @@ if (!($row = $statement->fetch(PDO::FETCH_ASSOC)))
 while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {
 	echo $row["name"] . ", " . $row["colorName"] . ", " . $row["size"] . "<br />\n";
+	echo "<a href='inventory.php?name=" . urlencode($row["name"]) . "&color=" . urlencode($row["colorName"]) . "&size=" . urlencode($row["size"]) ."'>To Item Page</a>" . "<br />\n";
+	echo "<br />\n";
 }
-	
-echo "<br />\n";
 	
 ?>
 
 				</div>
 			</div>
 		</div><!--/.container-->
-		
 	</body>
 </html>
