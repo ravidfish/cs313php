@@ -149,6 +149,8 @@ while ($row = $statement2->fetch(PDO::FETCH_ASSOC))
 								
 								</div>
 							</div>
+							<br />
+							<button type="button" class="btn btn-default" onclick="location='addComment.php'"><b>Add Comment</b></button>
 						</div>
 					</div>
 				</div>
