@@ -54,8 +54,8 @@ $db = loadDatabase();
 <?php
 
 echo "<br />\n<br />\n" . "All results that best match your query:" . "<br />\n<br />\n";
-$sql = "select i.name, c.colorName, s.size from item i join itemcolorsize ics on i.item_id = ics.item_id join color c on ics.color_id = c.color_id join size s on ics.size_id = s.size_id where i.name = :item";
-$item = $_POST["search"];
+$sql = "select i.name, c.colorName, s.size from item i join itemcolorsize ics on i.item_id = ics.item_id join color c on ics.color_id = c.color_id join size s on ics.size_id = s.size_id where i.name like :item";
+$item = $_POST["search"] . "%";
 $statement = $db->prepare($sql);
 $statement->bindValue(":item", $item, PDO::PARAM_STR);
 $statement->execute();
