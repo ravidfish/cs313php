@@ -50,9 +50,6 @@ $db = loadDatabase();
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-				
-				
-				
 				</div>
 				<div class="col-md-4">
 						
@@ -96,10 +93,64 @@ else
 	$size = $size;
 }
 
+$sql = "select image, description from item where name = :name";
+$statement = $db->prepare($sql);
+$statement->bindValue(":name", $name, PDO::PARAM_STR);
+$statement->execute();
+$results = $statement->fetch(PDO::FETCH_ASSOC);
+$image = $results['image'];
+$desc = $results['description'];
 
+//if ($desc === null || $desc == "") {echo "error";} else {echo $name . " " . $colorName . " " . $size . " " . $image . " " . $desc; }
 
 ?>
+	
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<?php echo "<h2><b>" . $name . "</b></h2><br />\n" . "<b>Size:</b> " . $size . ", " . $colorName; ?>							
+							</h3>
+						</div>
+						<div class="panel-body">
+							<?php echo "<img src='images/" . $image . "'></img>" . "<br />\n"; ?>
+							<?php echo "<br />\n" . "<p><b>Item Description:</b> " . $desc . "</p>"; ?>
 
+<?php
+
+//c.user_id join with u.user_id to get user fName and lName
+//
+$sql2 = "select c.body, c.date, u.fName, u.lName from comment c join item i on i.name = :name join user u on c.user_id  = u.user_id where c.item_id = i.item_id";
+$statement2 = $db->prepare($sql2);
+$statement2->bindValue(":name", $name, PDO::PARAM_STR);
+$statement2->execute();
+
+?>							
+							
+							<br /><br />
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">
+										<b>Comments</b>						
+									</h3>
+								</div>
+								<div class="panel-body">
+
+<?php 
+
+while ($row = $statement2->fetch(PDO::FETCH_ASSOC))
+{
+	echo "<b>Name:</b> " . $row['fName'] . " " . $row['lName'] . "<br />\n"; 
+	echo "<b>Date:</b> " . $row['date'] . "<br />\n"; 
+	echo "<b>Body:</b> " . $row['body'] . "<br />\n";
+	echo "<br />\n";
+}
+	
+?>
+								
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div><!--/.container-->
