@@ -59,11 +59,17 @@ $db = loadDatabase();
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-				
 				</div>
 				<div class="col-md-4">
-					<form role="form-vertical" action="inventory.php" method="post">
-						<select class="dropdown" name="item">
+					<div>
+						<b>Display All Inventory Items:  </b><button type="button" class="btn btn-default" onclick="location='searchResults.php'">All Items</button><br /><br />
+					</div>
+					<div>
+						<p>
+							<b>Or... Filter Results:</b>
+						</p>
+						<form role="form-vertical" action="inventory.php" method="post">
+							<select class="dropdown" name="item">
 						
 <?php
 
@@ -79,8 +85,8 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 							
 ?>
 						
-						</select>
-						<select class="dropdown" name="size">
+							</select>
+							<select class="dropdown" name="size">
 						
 <?php
 
@@ -96,8 +102,8 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 							
 ?>
 							
-						</select>
-						<select class="dropdown" name="color">
+							</select>
+							<select class="dropdown" name="color">
 						
 <?php
 
@@ -113,9 +119,10 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 							
 ?>
 							
-						</select>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>
+							</select>
+							<br /><br /><button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div><!--/.container-->

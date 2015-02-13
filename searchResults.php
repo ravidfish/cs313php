@@ -57,10 +57,20 @@ $db = loadDatabase();
 			
 <?php
 
-$sql = "select i.name, c.colorName, s.size from item i join itemcolorsize ics on i.item_id = ics.item_id join color c on ics.color_id = c.color_id join size s on ics.size_id = s.size_id where i.name like :item";
-$item = $_POST["search"] . "%";
-$statement = $db->prepare($sql);
-$statement->bindValue(":item", $item, PDO::PARAM_STR);
+if (isset($_POST['search']))
+{
+	$sql = "select i.name, c.colorName, s.size from item i join itemcolorsize ics on i.item_id = ics.item_id join color c on ics.color_id = c.color_id join size s on ics.size_id = s.size_id where i.name like :item";
+	$item = $_POST["search"] . "%";
+	$statement = $db->prepare($sql);
+	$statement->bindValue(":item", $item, PDO::PARAM_STR);
+}
+
+else
+{
+	$sql = "select i.name, c.colorName, s.size from item i join itemcolorsize ics on i.item_id = ics.item_id join color c on ics.color_id = c.color_id join size s on ics.size_id = s.size_id";
+	$statement = $db->prepare($sql);
+}
+
 $statement->execute();
 
 echo "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>";
@@ -84,6 +94,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 }
 
 echo "</div></div>";
+/*}*/
 
 ?>
 
