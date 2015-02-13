@@ -1,10 +1,10 @@
 <?php 
 
+session_start();
 require("dbConnector.php");
 $db = loadDatabase();
 
- ?>
-
+?>
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +48,7 @@ $db = loadDatabase();
 								<fieldset>
 									<hr>
 										<div>
-										<input name="user_id" type="text" id="user_id" placeholder="Email Address">
+											<input name="user_id" type="text" id="user_id" placeholder="Email Address">
 										</div>
 										<div>
 											<input type="password" name="password" id="password" placeholder="Password">

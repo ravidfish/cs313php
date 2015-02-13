@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require("dbConnector.php");
 $db = loadDatabase();
 
@@ -32,6 +33,7 @@ $db = loadDatabase();
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="dinobabies.php">Home</a></li>
 						<li><a href="myComments.php">View My Comments</a></li>
+						<li><a href="dinobabiesLogout.php">Log Out</a></li>
 					</ul>
 					<form class="navbar-form navbar-right" role="search" method="post" action="searchResults.php">
 						<div class="form-group">
@@ -50,32 +52,42 @@ $db = loadDatabase();
 			</div>
 			<div class="row">
 				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
 			
 <?php
 
-echo "<br />\n<br />\n" . "All results that best match your query:" . "<br />\n<br />\n";
 $sql = "select i.name, c.colorName, s.size from item i join itemcolorsize ics on i.item_id = ics.item_id join color c on ics.color_id = c.color_id join size s on ics.size_id = s.size_id where i.name like :item";
 $item = $_POST["search"] . "%";
 $statement = $db->prepare($sql);
 $statement->bindValue(":item", $item, PDO::PARAM_STR);
 $statement->execute();
 
+echo "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>";
+											
 if (!($row = $statement->fetch(PDO::FETCH_ASSOC)))
 {
-	echo "No results returned for your search..." . "<br />\n";
-	echo "<br />\n";
+	echo "<b>No results returned for your search...</b><br />\n<br />\n";
 }
+
+else
+{
+	echo "<b>All results that best match your query:</b><br />\n<br />\n";
+}
+
+echo "</h3></div><div class='panel-body'>";
 
 while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {
-	echo $row["name"] . ", " . $row["colorName"] . ", " . $row["size"] . "<br />\n";
-	echo "<a href='inventory.php?name=" . urlencode($row["name"]) . "&color=" . urlencode($row["colorName"]) . "&size=" . urlencode($row["size"]) ."'>To Item Page</a>" . "<br />\n";
-	echo "<br />\n";
+	echo "<b>Item: </b>" . $row["name"] . ", " . $row["colorName"] . ", " . $row["size"] . "<br />\n";
+	echo "<a href='inventory.php?name=" . urlencode($row["name"]) . "&color=" . urlencode($row["colorName"]) . "&size=" . urlencode($row["size"]) . "'>To Item Page</a><br />\n<br />\n";
 }
-	
+
+echo "</div></div>";
+
 ?>
 
-				</div>
+				</div>	
 			</div>
 		</div><!--/.container-->
 	</body>

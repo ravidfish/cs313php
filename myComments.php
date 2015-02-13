@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require("dbConnector.php");
 $db = loadDatabase();
 
@@ -32,6 +33,7 @@ $db = loadDatabase();
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="dinobabies.php">Home</a></li>
 						<li><a href="myComments.php">View My Comments</a></li>
+						<li><a href="dinobabiesLogout.php">Log Out</a></li>
 					</ul>
 					<form class="navbar-form navbar-right" role="search" method="post" action="searchResults.php">
 						<div class="form-group">
@@ -50,28 +52,27 @@ $db = loadDatabase();
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-
+				</div>
+				<div class="col-md-4">
+									
 <?php
 
-echo "<br />\n<br />\n" . "Comments for user 1:" . "<br />\n<br />\n";
-$sql = "SELECT date, body FROM comment WHERE user_id = :user";
-$user = "1";
+$sql = "SELECT c.date, c.body FROM comment c join user u on c.user_id = u.user_id where u.email = :user";
+$user = $_SESSION['user_id'];
 $statement = $db->prepare($sql);
 $statement->bindValue(':user', $user, PDO::PARAM_STR);
 $statement->execute();
-
 $count = 0;
 
 while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {	
 	$count++;
-	echo "Comment Number: " . $count . "<br />\n";
-	echo "Date: " . $row["date"] . "<br />\n";
-	echo "Body: " . $row["body"] . "<br />\n";
-	echo "<br />\n";
+	echo "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><b>My Comment Number: </b>" . $count . "<br />\n</h3></div>";
+	echo "<div class='panel-body'><b>Date: </b>" . $row["date"] . "<br />\n<b>Body: </b>" . $row["body"] . "<br />\n</div></div>";
 }
 
-?>
+?>		
+					
 				</div>
 			</div>
 		</div><!--/.container-->

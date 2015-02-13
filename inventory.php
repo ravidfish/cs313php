@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require("dbConnector.php");
 $db = loadDatabase();
 
@@ -32,6 +33,7 @@ $db = loadDatabase();
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="dinobabies.php">Home</a></li>
 						<li><a href="myComments.php">View My Comments</a></li>
+						<li><a href="dinobabiesLogout.php">Log Out</a></li>
 					</ul>
 					<form class="navbar-form navbar-right" role="search" method="post" action="searchResults.php">
 						<div class="form-group">
@@ -118,7 +120,6 @@ $desc = $results['description'];
 <?php
 
 //c.user_id join with u.user_id to get user fName and lName
-//
 $sql2 = "select c.body, c.date, u.fName, u.lName from comment c join item i on i.name = :name join user u on c.user_id  = u.user_id where c.item_id = i.item_id";
 $statement2 = $db->prepare($sql2);
 $statement2->bindValue(":name", $name, PDO::PARAM_STR);
@@ -141,8 +142,7 @@ while ($row = $statement2->fetch(PDO::FETCH_ASSOC))
 {
 	echo "<b>Name:</b> " . $row['fName'] . " " . $row['lName'] . "<br />\n"; 
 	echo "<b>Date:</b> " . $row['date'] . "<br />\n"; 
-	echo "<b>Body:</b> " . $row['body'] . "<br />\n";
-	echo "<br />\n";
+	echo "<b>Body:</b> " . $row['body'] . "<br />\n<br />\n";
 }
 	
 ?>
