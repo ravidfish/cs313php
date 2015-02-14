@@ -29,13 +29,18 @@ $db = loadDatabase();
 				<div class="navbar-header">
 					<span class="navbar-brand" href="dinobabies.php">Dinobabies</span>
 				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="dinobabiesLogin.php">Back To Log In</a></li>
+					</ul>
+				</div>
 			</div><!-- /.container -->
 		</nav><!-- /.navbar -->
 		
 		<!-- header contents -->
 		<div class="container">
 			<div class="jumbotron">
-				<h1>Please Login</h1> 
+				<h1>New User</h1> 
 			</div>
 			<div class="row">
 				<div class="col-md-4">
@@ -43,23 +48,29 @@ $db = loadDatabase();
 				<div class="col-md-4">
 					<div style="margin-top:20px">
 						<div>
-							<form name="form_login" method="post" action="login.php" role="form">
+							<form name="form_login" method="post" action="createUser.php" role="form">
 								<fieldset>
 									<hr>
 										<div>
-											<input name="user_id" type="text" id="user_id" placeholder="Email Address">
+											<input name="fName" type="text" id="fName" placeholder="First Name"><br /><br />
 										</div>
 										<div>
-											<input type="password" name="password" id="password" placeholder="Password">
+											<input name="lName" type="text" id="lName" placeholder="Last Name"><br /><br />
+										</div>
+										<div>
+											<input name="new_user" type="text" id="new_user" placeholder="User ID: Email"><br /><br />
+										</div>
+										<div>
+											<input type="password" name="password1" id="password1" placeholder="Enter Your Password"><br /><br />
+										</div>
+										<div>
+											<input type="password" name="password2" id="password2" placeholder="Re-enter Your Password">
 										</div>
 									</hr>
 									<hr>
 										<div>
 											<div>
-												<input type="submit" name="Submit" value="Login">
-											</div>
-											<div> 
-												<br /><a href="newUser.php">Register<small> - Create Account</small></a> 
+												<input type="submit" name="Submit" value="Create">
 											</div>
 										</div>
 									</hr>

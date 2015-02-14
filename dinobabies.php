@@ -59,11 +59,11 @@ $db = loadDatabase();
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-				</div>
-				<div class="col-md-4">
 					<div>
 						<b>Display All Inventory Items:  </b><button type="button" class="btn btn-default" onclick="location='searchResults.php'">All Items</button><br /><br />
 					</div>
+				</div>
+				<div class="col-md-4">
 					<div>
 						<p>
 							<b>Or... Filter Results:</b>

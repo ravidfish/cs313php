@@ -64,6 +64,11 @@ $statement->bindValue(':user', $user, PDO::PARAM_STR);
 $statement->execute();
 $count = 0;
 
+if (!($row = $statement->fetch(PDO::FETCH_ASSOC)))
+{
+	echo "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><b>No results returned for your search...</b><br />\n</h3></div><div class='panel-body'><br />\n</div></div>";
+}
+
 while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {	
 	$count++;
