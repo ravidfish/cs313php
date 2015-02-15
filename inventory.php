@@ -57,43 +57,33 @@ $db = loadDatabase();
 						
 <?php
 
-$name = "";
-$colorName = "";
-$size = "";
+$pageURL = "http";
 
-if (isset($_POST['item']) && isset($_POST['size']) && isset($_POST['color']))
+if (array_key_exists('HTTPS', $_SERVER) && $_SERVER["HTTPS"] == "on") 
 {
-	$name = $_POST['item'];
-	$colorName = $_POST['color'];
-	$size = $_POST['size'];
+	$pageURL .= "s";
+}
+
+if ($_SERVER["SERVER_PORT"] != "80")
+{
+	$pageURL .= "://";
 }
 
 else
 {
-	$pageURL = "http";
-
-	if (array_key_exists('HTTPS', $_SERVER) && $_SERVER["HTTPS"] == "on") 
-	{
-		$pageURL .= "s";
-	}
-
-	if ($_SERVER["SERVER_PORT"] != "80")
-	{
-		$pageURL .= "://";
-	}
-
-	else
-	{
-		$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-	}
-
-	$query_str = parse_url($pageURL, PHP_URL_QUERY);
-	parse_str($query_str);
-	
-	$name = $name;
-	$colorName = $color;
-	$size = $size;
+	$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
 }
+
+$query_str = parse_url($pageURL, PHP_URL_QUERY);
+parse_str($query_str);
+
+$_SESSION['name'] = $name;
+$_SESSION['colorName'] = $colorName;
+$_SESSION['size'] = $size;
+
+$name = $name;
+$colorName = $colorName;
+$size = $size;
 
 $sql = "select image, description from item where name = :name";
 $statement = $db->prepare($sql);
@@ -102,8 +92,6 @@ $statement->execute();
 $results = $statement->fetch(PDO::FETCH_ASSOC);
 $image = $results['image'];
 $desc = $results['description'];
-
-//if ($desc === null || $desc == "") {echo "error";} else {echo $name . " " . $colorName . " " . $size . " " . $image . " " . $desc; }
 
 ?>
 	
@@ -119,7 +107,6 @@ $desc = $results['description'];
 
 <?php
 
-//c.user_id join with u.user_id to get user fName and lName
 $sql2 = "select c.body, c.date, u.fName, u.lName from comment c join item i on i.name = :name join user u on c.user_id  = u.user_id where c.item_id = i.item_id";
 $statement2 = $db->prepare($sql2);
 $statement2->bindValue(":name", $name, PDO::PARAM_STR);
@@ -149,8 +136,34 @@ while ($row = $statement2->fetch(PDO::FETCH_ASSOC))
 								
 								</div>
 							</div>
-							<br />
-							<button type="button" class="btn btn-default" onclick="location='addComment.php'"><b>Add Comment</b></button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<b>Add Comments</b>						
+							</h3>
+						</div>
+						<div class="panel-body">
+							<form method="post" action="commentHelper.php">
+								<textarea name="comment" rows='5' cols='43' placeholder="Comment Body..."></textarea>
+								<input type="submit">
+							</form>
+					
+<?php 
+					
+/*if (isset($_POST['comment'])) 
+{
+	if ($_POST['comment'] != "" || $_POST['comment'] != null)
+	{
+		$commentBody = $_POST['comment'];
+		//header("Location: addComment.php?name=" . urlencode($name) . "&colorName=" . urlencode($colorName) . "&size=" . urlencode($size) . "&body=" . urlencode($commentBody));
+	}
+}*/
+
+?>
 						</div>
 					</div>
 				</div>

@@ -59,69 +59,10 @@ $db = loadDatabase();
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<div>
-						<b>Display All Inventory Items:  </b><button type="button" class="btn btn-default" onclick="location='searchResults.php'">All Items</button><br /><br />
-					</div>
 				</div>
 				<div class="col-md-4">
 					<div>
-						<p>
-							<b>Or... Filter Results:</b>
-						</p>
-						<form role="form-vertical" action="inventory.php" method="post">
-							<select class="dropdown" name="item">
-						
-<?php
-
-$sql = "SELECT name from item";
-$statement = $db->prepare($sql);
-$statement->execute();
-
-while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-{	
-	echo "<option value='" . $row["name"] ."'>" . $row["name"] . "</option>";
-
-}					
-							
-?>
-						
-							</select>
-							<select class="dropdown" name="size">
-						
-<?php
-
-$sql = "SELECT size from size";
-$statement = $db->prepare($sql);
-$statement->execute();
-
-while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-{	
-	echo "<option value='" . $row["size"] ."'>" . $row["size"] . "</option>";
-
-}					
-							
-?>
-							
-							</select>
-							<select class="dropdown" name="color">
-						
-<?php
-
-$sql = "SELECT colorName from color";
-$statement = $db->prepare($sql);
-$statement->execute();
-
-while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-{	
-	echo "<option value='" . $row["colorName"] ."'>" . $row["colorName"] . "</option>";
-
-}
-							
-?>
-							
-							</select>
-							<br /><br /><button type="submit" class="btn btn-default">Submit</button>
-						</form>
+						<b>Display All Inventory Items:  </b><button type="button" class="btn btn-default" onclick="location='searchResults.php'">All Items</button><br /><br />
 					</div>
 				</div>
 			</div>

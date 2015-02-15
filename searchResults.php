@@ -90,11 +90,10 @@ echo "</h3></div><div class='panel-body'>";
 while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 {
 	echo "<b>Item: </b>" . $row["name"] . ", " . $row["colorName"] . ", " . $row["size"] . "<br />\n";
-	echo "<a href='inventory.php?name=" . urlencode($row["name"]) . "&color=" . urlencode($row["colorName"]) . "&size=" . urlencode($row["size"]) . "'>To Item Page</a><br />\n<br />\n";
+	echo "<a href='inventory.php?name=" . urlencode($row["name"]) . "&colorName=" . urlencode($row["colorName"]) . "&size=" . urlencode($row["size"]) . "'>To Item Page</a><br />\n<br />\n";
 }
 
 echo "</div></div>";
-/*}*/
 
 ?>
 
