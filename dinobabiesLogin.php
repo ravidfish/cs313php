@@ -27,7 +27,7 @@ $db = loadDatabase();
 		<nav class="navbar navbar-fixed-top navbar-inverse">
 			<div class="container">
 				<div class="navbar-header">
-					<span class="navbar-brand" href="dinobabies.php">Dinobabies</span>
+					<span class="navbar-brand" href="dinobabies.php">Dinobabies Crochet</span>
 				</div>
 			</div><!-- /.container -->
 		</nav><!-- /.navbar -->
@@ -35,7 +35,7 @@ $db = loadDatabase();
 		<!-- header contents -->
 		<div class="container">
 			<div class="jumbotron">
-				<h1>Please Login</h1> 
+				<h2>Dinobabies Crochet - Login Below</h2> 
 			</div>
 			<div class="row">
 				<div class="col-md-4">

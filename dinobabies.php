@@ -34,9 +34,9 @@ $db = loadDatabase();
 		<nav class="navbar navbar-fixed-top navbar-inverse">
 			<div class="container">
 				<div class="navbar-header">
-					<span class="navbar-brand" href="dinobabies.php">Dinobabies</span>
+					<span class="navbar-brand" href="dinobabies.php">Dinobabies Crochet</span>
 				</div>
-				<div id="navbar" class="collapse navbar-collapse">
+				<div>
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="dinobabies.php">Home</a></li>
 						<li><a href="myComments.php">View My Comments</a></li>
@@ -55,12 +55,17 @@ $db = loadDatabase();
 		<!-- header contents -->
 		<div class="container">
 			<div class="jumbotron">
-				<h1>Dinobabies</h1> 
+				<h2>Dinobabies</h2> 
 			</div>
 			<div class="row">
 				<div class="col-md-4">
 				</div>
 				<div class="col-md-4">
+					<div>
+						<b>Welcome to Dinobabies Crochet.  The home of the business Dinobabies and all your crocheting needs.</b><br /><br />
+						<b>Here you can view our inventory by searching in the box at the top of the page or by filling out the for below.</b><br /><br />
+						<b>You can also review the comment posting you have made on our various inventory items by clicking the link at the top.</b><br /><br />
+					</div>
 					<div>
 						<b>Display All Inventory Items:  </b><button type="button" class="btn btn-default" onclick="location='searchResults.php'">All Items</button><br /><br />
 					</div>
