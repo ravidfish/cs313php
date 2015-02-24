@@ -64,19 +64,23 @@ $sql = "SELECT c.date, c.body FROM comment c join user u on c.user_id = u.user_i
 $user = $_SESSION['user_id'];
 $statement = $db->prepare($sql);
 $statement->bindValue(':user', $user, PDO::PARAM_STR);
+$statement->setFetchMode(PDO::FETCH_ASSOC);
 $statement->execute();
+$row = $statement->fetchAll();
 $count = 0;
 
-if (!($row = $statement->fetch(PDO::FETCH_ASSOC)))
+if($row)
+{
+	foreach($row as $r)
+	{
+		$count++;
+		echo "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><b>My Comment Number: </b>" . $count . "<br />\n</h3></div>";
+		echo "<div class='panel-body'><b>Date: </b>" . $r["date"] . "<br />\n<b>Body: </b>" . $r["body"] . "<br />\n</div></div>";
+	}
+}
+else
 {
 	echo "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><b>No results returned for your search...</b><br />\n</h3></div><div class='panel-body'><br />\n</div></div>";
-}
-
-while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-{	
-	$count++;
-	echo "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><b>My Comment Number: </b>" . $count . "<br />\n</h3></div>";
-	echo "<div class='panel-body'><b>Date: </b>" . $row["date"] . "<br />\n<b>Body: </b>" . $row["body"] . "<br />\n</div></div>";
 }
 
 ?>		
